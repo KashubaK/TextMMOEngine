@@ -1,0 +1,13 @@
+{{yield}}
+
+<h3>Login</h3>
+
+<hr/>
+
+{{ input value=username placeholder="Username" }}
+{{ input value=password placeholder="Password" }}
+
+<button {{action "login"}}>Log In</button>
+<button {{action "register"}}>Register</button>
+
+<hr/>

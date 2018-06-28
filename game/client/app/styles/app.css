@@ -1,0 +1,27 @@
+.map {
+    width: 512px;
+    height: 512px;
+
+    display: flex;
+
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    flex-direction: row;
+    align-content: baseline;
+}
+
+.tile {
+    width: 16px;
+    height: 16px;
+
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    display: flex;
+}
+
+.npc {
+    margin: auto;
+    height: 8px;
+    width: 8px;
+    border-radius: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+}

@@ -1,0 +1,18 @@
+{{yield}}
+
+{{map-view}}
+
+<h1>Hello world!</h1>
+
+<div class="game">
+    <div class="feed">
+        <ul>
+            {{#each log as |str|}}
+                <li>{{str}}</li>
+            {{/each}}
+        </ul>
+    </div>
+    <div class="compose">
+        {{ input value=compose enter="sendCommand" }}
+    </div>
+</div>
