@@ -2,6 +2,8 @@ import Component from '@ember/component';
 import { inject } from '@ember/service';
 
 export default Component.extend({
+    classNames: ["map-container"],
+    
     lively: inject(),
 
     player: Ember.computed.alias('lively.state.player'),
@@ -55,8 +57,9 @@ export default Component.extend({
         })
 
         lively.registerEvent("TILE_UPDATED", (state, action) => { 
-            state.tiles.map(tile => {
+            state.tiles = state.tiles.map(tile => {
                 if (tile._id === action.payload._id) {
+                    console.log("Found and updated tile")
                     return action.payload;
                 } else {
                     return tile;

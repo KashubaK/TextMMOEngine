@@ -19,7 +19,16 @@ function Being(data, livelyUser) {
 
     };
 
-    this.getStat = statName => this.data.stats.find(stat => stat.name === statName);
+    this.getItemFromEquipment = equipTo => this.data.equipment.find(item => item.item.equipTo === equipTo);
+
+    this.removeItemFromEquipment = item => {
+        this.addItemToInventory(item);
+        this.data.equipment.splice(this.data.equipment.indexOf(item), 1);
+    }
+
+    this.addItemToInventory = item => this.data.inventory.push(item);
+
+    this.getStat = statName => this.data.stats.find(stat => stat.stat.name === statName);
 
     this.heal = hitpoints => {
         this.data.hitpoints += hitpoints;

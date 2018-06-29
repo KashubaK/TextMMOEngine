@@ -9,8 +9,21 @@ function Game(lively) {
 
     this.players = new Immutable.List();
     this.npcs = new Immutable.Map();
+    this.worldNpcs = new Immutable.Map();
     this.objects = new Immutable.List();
     this.tiles = new Immutable.Map();
+
+    this.setTile = tile => {
+        this.tiles = this.tiles.set(tile.id, tile);
+    }
+
+    this.setNpc = npc => {
+        this.npcs = this.npcs.set(npc.id, npc);
+    }
+
+    this.setWorldNpc = worldNpc => {
+        this.worldNpcs = this.worldNpcs.set(worldNpc.id, worldNpc);
+    }
 
     this.getPlayers = () => {
         const players = [];
@@ -39,7 +52,7 @@ function Game(lively) {
 
     this.init = () => {
         const Tile = this.lively.getModel("Tile");
-        const NPC = this.lively.getModel("NPC");
+        const WorldNPC = this.lively.getModel("WorldNPC");
 
         Tile.find({})
             .exec((err, tiles) => {
@@ -51,15 +64,15 @@ function Game(lively) {
                     console.log(`Added tile ${tile.material}:${tile.type} at [${tile.position}]`);
                 });
 
-                NPC.find({})
+                WorldNPC.find({})
                     .exec((err, npcs) => {
                         if (err) throw err;
 
                         npcs.forEach(npc => { 
                             const npcBeing = new Being(npc);
-                            this.npcs = this.npcs.set(npc._id, npcBeing);
+                            this.worldNpcs = this.worldNpcs.set(npc.id, npcBeing);
 
-                            console.log(`Added npc ${npc.name} at [${npc.position}]`);
+                            console.log(`Added npc ${npc.npcData.name} at [${npc.position}]`);
                         });
                     })
             })

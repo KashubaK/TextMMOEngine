@@ -1,17 +1,15 @@
 {{yield}}
 
-{{#each tiles as |tileRow|}}
-    {{#each tileRow as |t|}}
-        <span>{{t.type}}:{{t.material}} at {{t.position}}</span>
-    {{/each}}
-{{/each}}
-
 <div class="map" style={{style}}>
     {{#each tiles as |tileRow|}}
         {{#each tileRow as |t|}}
             <div class="tile" style={{tile-style t player}}>
                 {{#if t.npc}}
                     <div class="npc"></div>
+                {{/if}}
+
+                {{#if (gt t.items.length 0)}}
+                    <div class="item"></div>
                 {{/if}}
             </div>
         {{/each}}

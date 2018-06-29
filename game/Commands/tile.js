@@ -25,12 +25,12 @@ module.exports = {
     
             tile.save()
                 .then(() => {
-                    game.tiles = game.tiles.set(tile._id, tile);
+                    game.setTile(tile._id, tile);
 
                     player.livelyUser.sendEvent({
                         type: "TILE_CREATED",
                         payload: tile
-                    })
+                    });
 
                     resolve(`New ${material} tile created at [${tile.position}]`);
                 })

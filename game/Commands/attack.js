@@ -21,7 +21,7 @@ module.exports = {
 
             simulateBattle(player, targetTileBeing);
 
-            resolve(`The battle has started! Best of luck, ${targetTileBeing.data.name}!`);
+            resolve(`The battle has started! Best of luck, ${targetTileBeing.data.npcData.name}!`);
         })
     }
 }

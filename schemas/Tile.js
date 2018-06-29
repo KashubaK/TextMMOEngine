@@ -12,11 +12,11 @@ const Tile = new mongoose.Schema({
 
     metadata: mongoose.Schema.Types.Mixed,
 
-    npc: { type: mongoose.Schema.Types.ObjectId, ref: "NPC", autopopulate: true },
+    npc: { type: mongoose.Schema.Types.ObjectId, ref: "WorldNPC", autopopulate: true },
     object: mongoose.Schema.Types.Mixed,
  
-    items: [{ type: mongoose.Schema.Types.ObjectId, ref: "Item", autopopulate: true }],
-    itemsBelowGround: [{ type: mongoose.Schema.Types.ObjectId, ref: "Item", autopopulate: true }]
+    items: [{ type: mongoose.Schema.Types.ObjectId, ref: "WorldItem", autopopulate: true }],
+    itemsBelowGround: [{ type: mongoose.Schema.Types.ObjectId, ref: "WorldItem", autopopulate: true }]
 });
 
 Tile.plugin(autopopulate);

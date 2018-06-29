@@ -1,26 +1,29 @@
 const mongoose = require('mongoose');
+const autopopulate = require('mongoose-autopopulate');
 
 const NPC = new mongoose.Schema({
     name: String, // Bob
     level: Number,
-    hitpoints: Number,
-
-    position: String, // x,y
 
     attackable: Boolean,
     canTalkTo: Boolean,
 
-    stats: [{
-        name: String, // Attack
-        description: String, // Affects your chance of landing an attack
+    respawnInterval: Number, // seconds
+
+    stats: [{ type: mongoose.Schema.Types.ObjectId, ref: "StatProgress", autopopulate: true }],
     
-        exp: Number, // No need for expToNextLevel or currentLevel, will have an algorithm for that,
-        level: Number
-    }],
-    
-    equipment: [{ type: mongoose.Schema.Types.ObjectId, ref: "Item" }],
-    inventory: [{ type: mongoose.Schema.Types.ObjectId, ref: "Item" }]
+    equipment: [{ type: mongoose.Schema.Types.ObjectId, ref: "WorldItem" }],
+    inventory: [{ type: mongoose.Schema.Types.ObjectId, ref: "WorldItem" }],
+
+    dropTable: [
+        {
+            item: { type: mongoose.Schema.Types.ObjectId, ref: "Item" },
+            chance: Number // chance / 100000
+        }
+    ]
 });
+
+NPC.plugin(autopopulate);
 
 const NPCModel = mongoose.model('NPC', NPC);
 
