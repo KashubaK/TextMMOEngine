@@ -1,6 +1,9 @@
 module.exports = {
     name: "look",
     description: "Check something out.",
+    params: [
+        "Target Tile: `0,3`"
+    ],
 
     effect(player, game, composed) {
         return new Promise((resolve, reject) => {

@@ -1,6 +1,11 @@
 module.exports = {
     name: "npcstat",
     description: "Add a Stat to an NPC.",
+    params: [
+        "NPC Name: `Bob`",
+        "Stat Name: `Attack`",
+        "Stat Level: `20`"
+    ],
 
     effect(player, game, composed) {
         return new Promise((resolve, reject) => {

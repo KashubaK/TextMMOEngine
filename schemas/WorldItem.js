@@ -8,11 +8,11 @@ const WorldItem = new mongoose.Schema({
 
     state: mongoose.Schema.Types.Mixed,
 
-    ownedByNPC: { type: mongoose.Schema.Types.ObjectId, ref: "NPC" },
+    ownedByWorldNPC: { type: mongoose.Schema.Types.ObjectId, ref: "WorldNPC" },
     ownedByPlayer: { type: mongoose.Schema.Types.ObjectId, ref: "Player" },
 
     droppedByPlayer: { type: mongoose.Schema.Types.ObjectId, ref: "Player" },
-    droppedByNPC: { type: mongoose.Schema.Types.ObjectId, ref: "NPC" }
+    droppedByWorldNPC: { type: mongoose.Schema.Types.ObjectId, ref: "WorldNPC" }
 });
 
 WorldItem.plugin(timestamps);

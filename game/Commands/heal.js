@@ -1,6 +1,9 @@
 module.exports = {
     name: "heal",
-    description: "Heal yourself for 5 HP.",
+    description: "Heal yourself for a desired amount.",
+    params: [
+        "Healing Amount: `10`"
+    ],
 
     effect(player, target, composed) {
         return new Promise((resolve, reject) => {

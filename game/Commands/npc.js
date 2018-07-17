@@ -1,6 +1,9 @@
 module.exports = {
     name: "npc",
     description: "Creates an npc.",
+    params: [
+        "NPC Name: `Beter`"
+    ],
 
     effect(player, game, composed) {
         return new Promise((resolve, reject) => {

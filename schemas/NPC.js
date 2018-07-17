@@ -17,7 +17,7 @@ const NPC = new mongoose.Schema({
 
     dropTable: [
         {
-            item: { type: mongoose.Schema.Types.ObjectId, ref: "Item" },
+            item: { type: mongoose.Schema.Types.ObjectId, ref: "Item", autopopulate: true },
             chance: Number // chance / 100000
         }
     ]

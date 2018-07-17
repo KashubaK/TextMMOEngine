@@ -1,6 +1,7 @@
 module.exports = {
     name: "pickup",
     description: "Pick up the first item on a tile.",
+    params: [],
 
     effect(player, game, composed) {
         return new Promise((resolve, reject) => {
@@ -12,12 +13,16 @@ module.exports = {
                 .then(() => {
                     game.setTile(targetTile);
 
-                    player.addItemToInventory(item);
-                    player.save()
+                    item.ownedByPlayer = player.data._id;
+                    item.save()
                         .then(() => {
-                            player.sendUpdate();
-
-                            resolve(`Picked up a ${item.item.name}!`);
+                            player.addItemToInventory(item);
+                            player.save()
+                                .then(() => {
+                                    player.sendUpdate();
+        
+                                    resolve(`Picked up a ${item.item.name}!`);
+                                })
                         })
                 })
         })

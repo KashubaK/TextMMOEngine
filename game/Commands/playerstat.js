@@ -1,6 +1,9 @@
 module.exports = {
     name: "playerstat",
-    description: "Add a Stat to an Player.",
+    description: "Add a Stat to a Player.",
+    params: [
+        "Player Name: `PussySlayer85`"
+    ],
 
     effect(player, game, composed) {
         return new Promise((resolve, reject) => {

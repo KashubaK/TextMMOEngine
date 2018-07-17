@@ -1,6 +1,9 @@
 module.exports = {
     name: "hurt",
-    description: "Hurt yourself for 5 HP.",
+    description: "Hurt yourself for an amount of HP.",
+    params: [
+        "Damage Amount: `5`"
+    ],
 
     effect(player, target, composed) {
         return new Promise((resolve, reject) => {

@@ -26,7 +26,9 @@ export default Component.extend({
         const lively = this.get('lively');
 
         lively.registerEvent("LOG_OUTPUT", (state, action) => {
-            state.log.insertAt(0, action.payload);
+            if (action.payload || action.payload === "") {
+                state.log.insertAt(0, action.payload.length > 0 ? action.payload : "$");
+            }
 
             return state;
         });

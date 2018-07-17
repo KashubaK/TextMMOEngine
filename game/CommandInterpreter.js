@@ -1,24 +1,13 @@
-const heal = require('./Commands/heal');
-const hurt = require('./Commands/hurt');
-const tile = require('./Commands/tile');
-const walk = require('./Commands/walk');
-const npc = require('./Commands/npc');
-const look = require('./Commands/look');
-const attack = require('./Commands/attack');
-const item = require('./Commands/item');
-const stat = require('./Commands/stat');
-const itemattr = require('./Commands/itemattr');
-const npcattr = require('./Commands/npcattr');
-const npcstat = require('./Commands/npcstat');
-const playerstat = require('./Commands/playerstat');
-const spawnnpc = require('./Commands/spawnnpc');
-const spawnitem = require('./Commands/spawnitem');
-const pickup = require('./Commands/pickup');
-const equip = require('./Commands/equip');
-const npcdrop = require('./Commands/npcdrop');
+const _ = require('lodash');
+const fs = require('fs');
+const path = require('path');
 
 function CommandInterpreter() {
-    this.commands = [heal, hurt, tile, walk, npc, look, attack, item, itemattr, npcattr, npcstat, spawnnpc, stat, playerstat, spawnitem, pickup, equip, npcdrop];
+    this.commands = [];
+    this.uses = [];
+
+    this.getCommand = cmdName => this.commands.find(command => command.name === cmdName);
+    this.getUse = itemName => this.uses.find(use => use.name === itemName);
 
     this.interpret = (player, game, composed) => {
         return new Promise((resolve, reject) => {
@@ -32,7 +21,50 @@ function CommandInterpreter() {
                     resolve(output);
                 });
         })
-    }
+    };
+
+    this.loadCommands = () => {
+        const pathToCommands = __dirname + "/Commands";
+
+        const walkSync = (d) => {
+            if (fs.statSync(d).isDirectory()) {
+                return fs.readdirSync(d).map(f => {
+                    return walkSync(path.join(d, f)); 
+                })
+            } else {
+                return d; // A file
+            }
+        };
+
+        _.forEach(walkSync(pathToCommands), (commandFile) => {
+            const command = require(commandFile);
+            console.log(`Loaded command ${command.name}`)
+            this.commands.push(command);
+        });
+    };
+
+    this.loadUses = () => {
+        const pathToUses = __dirname + "/Uses";
+
+        const walkSync = (d) => {
+            if (fs.statSync(d).isDirectory()) {
+                return fs.readdirSync(d).map(f => {
+                    return walkSync(path.join(d, f)); 
+                })
+            } else {
+                return d; // A file
+            }
+        };
+
+        _.forEach(walkSync(pathToUses), (useFile) => {
+            const use = require(useFile);
+            console.log(`Loaded use ${use.name}`)
+            this.uses.push(use);
+        });
+    };
+
+    this.loadCommands();
+    this.loadUses();
 }
 
 module.exports = CommandInterpreter; 

@@ -19,10 +19,11 @@ body {
     background-color: black;
     font-family: "Roboto Mono";
 
-    padding-bottom: 27px;
+    margin-bottom: 27px;
 
     display: flex;
     flex-direction: column-reverse;
+    overflow-y: auto;
 }
 
 .feed .message {
@@ -32,13 +33,19 @@ body {
     padding: 4px;
 }
 
+.feed .message.blank {
+    height: 7px;
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
 .compose {
-    position: absolute;
+    position: fixed;
 
     bottom: 0;
     left: 0;
-    width: 100%;
+    width: 75vw;
     font-family: "Roboto Mono";
+    background-color: black;
 }
 
 .compose input {

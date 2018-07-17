@@ -13,6 +13,8 @@ const PlayerSchema = new mongoose.Schema({
     energy: Number,
     hitpoints: Number,
 
+    focus: String,
+
     stats: [{ type: mongoose.Schema.Types.ObjectId, ref: "StatProgress", autopopulate: true }],
 
     equipment: [{ type: mongoose.Schema.Types.ObjectId, ref: "WorldItem", autopopulate: true }],

@@ -1,6 +1,9 @@
 module.exports = {
     name: "equip",
     description: "Equip an item from your inventory.",
+    params: [
+        "Item Name: `stick`"
+    ],
 
     effect(player, game, composed) {
         return new Promise((resolve, reject) => {

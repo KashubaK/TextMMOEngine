@@ -1,6 +1,11 @@
 module.exports = {
     name: "npcattr",
     description: "Add/change an NPC's attribute.",
+    params: [
+        "NPC Name: `Bob`",
+        "NPC Attribute: `hitpoints`",
+        "Attribute Value: `20`"
+    ],
 
     effect(player, game, composed) {
         return new Promise((resolve, reject) => {

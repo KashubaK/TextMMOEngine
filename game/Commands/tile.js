@@ -1,6 +1,13 @@
 module.exports = {
     name: "tile",
     description: "Add a tile to the world.",
+    params: [
+        "Tile Coordinates: `5,9`",
+        "Tile Material: `Grass`",
+        "Tile Traversability: `true`",
+        "Tile Energy Cost: `1`",
+        "Tile Type: `ground`"
+    ],
 
     effect(player, game, composed) {
         return new Promise((resolve, reject) => {

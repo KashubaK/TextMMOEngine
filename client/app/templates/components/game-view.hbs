@@ -3,7 +3,7 @@
 <div class="game">
     <div class="feed">
         {{#each log as |str|}}
-            <div class="message">{{str}}</div>
+            <div class={{if (eq str "$") "message blank" "message"}}>{{if (eq str "$") "" str}}</div>
         {{/each}}
 
         <div class="compose">

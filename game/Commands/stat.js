@@ -1,6 +1,12 @@
 module.exports = {
     name: "stat",
     description: "Create a new stat.",
+    params: [
+        "Stat Name: `Attack`",
+        "Stat Starting Level: `1`",
+        "Stat Starting EXP: `0`",
+        "Stat Max Level: `99`"
+    ],
 
     effect(player, game, composed) {
         return new Promise((resolve, reject) => {

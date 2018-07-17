@@ -1,6 +1,11 @@
 module.exports = {
     name: "npcdrop",
     description: "Add an item to an NPC's drop table.",
+    params: [
+        "NPC Name: `Bob`",
+        "Item Name: `Sword`",
+        "Chance (x/100000): `20000`"
+    ],
 
     effect(player, game, composed) {
         return new Promise((resolve, reject) => {

@@ -1,6 +1,11 @@
 module.exports = {
     name: "itemattr",
     description: "Add/change an item's attribute.",
+    params: [
+        "Item Name: `bowl`",
+        "Item Attribute: `minDamage`",
+        "Attribute Value: `1`"
+    ],
 
     effect(player, game, composed) {
         return new Promise((resolve, reject) => {

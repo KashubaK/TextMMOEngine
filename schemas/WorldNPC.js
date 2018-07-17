@@ -8,13 +8,14 @@ const WorldNPC = new mongoose.Schema({
     hitpoints: Number,
     dead: Boolean,
 
-    drops: [{ type: mongoose.Schema.Types.ObjectId, ref: "WorldItem" }],
+    drops: [{ type: mongoose.Schema.Types.ObjectId, ref: "WorldItem", autopopulate: true }],
 
     stats: [{ type: mongoose.Schema.Types.ObjectId, ref: "StatProgress", autopopulate: true }],
     
     equipment: [{ type: mongoose.Schema.Types.ObjectId, ref: "WorldItem" }],
     inventory: [{ type: mongoose.Schema.Types.ObjectId, ref: "WorldItem" }]
 });
+
 
 WorldNPC.plugin(timestamps);
 WorldNPC.plugin(autopopulate);

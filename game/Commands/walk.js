@@ -1,6 +1,9 @@
 module.exports = {
     name: "walk",
     description: "Walk to a tile.",
+    params: [
+        "Tile Coordinates: `0,3`"
+    ],
 
     effect(player, game, composed) {
         return new Promise((resolve, reject) => {

@@ -1,6 +1,10 @@
 module.exports = {
     name: "spawnitem",
     description: "Spawn an item at the desired location.",
+    params: [
+        "Item Name: `Sword`",
+        "Tile Coordinates: `5,3`"
+    ],
 
     effect(player, game, composed) {
         return new Promise((resolve, reject) => {
