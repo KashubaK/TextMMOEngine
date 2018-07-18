@@ -12,7 +12,7 @@ body {
 }
 
 .feed {
-    width: 75vw;
+    width: calc(100vw - 300px);
     height: calc(100vh - 27px);
 
     position: relative;
@@ -43,7 +43,7 @@ body {
 
     bottom: 0;
     left: 0;
-    width: 75vw;
+    width: calc(100vw - 300px);
     font-family: "Roboto Mono";
     background-color: black;
 }
@@ -63,19 +63,19 @@ body {
 }
 
 .interact {
-    width: 25vw;
+    width: 300px;
     height: 100vh;
 }
 
 .map-container {
-    height: 33vh;
+    height: 300px;
     width: 100%;
 
     background-color: rgba(0, 0, 0, 0.5);
 }
 
 .something {
-    height: 67vh;
+    height: calc(100vh - 300px);
     width: 100%;
     background-color: rgba(0, 0, 0, 0.75);
 }

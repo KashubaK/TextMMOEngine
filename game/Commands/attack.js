@@ -2,7 +2,7 @@ const simulateBattle = require('../simulateBattle');
 
 module.exports = {
     name: "attack",
-    description: "Smack that bitch up.",
+    description: "Smack that fool up.",
     params: [
         "Target Tile: `0,3`"
     ],
@@ -10,7 +10,6 @@ module.exports = {
     effect(player, game, composed) {
         return new Promise((resolve, reject) => {
             const WorldNPC = game.lively.getModel("WorldNPC");
-
             const target = composed.split(" ")[1];
 
             // 1,1

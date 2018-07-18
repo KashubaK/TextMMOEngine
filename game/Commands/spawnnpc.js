@@ -110,7 +110,6 @@ module.exports = {
                         const chanceResult = chance / 100000 * 100 + 1; // 1 ... 100
     
                         if (Math.random() * 100 + 1 <= chanceResult) {
-                            console.log(`${worldNpc.npcData.name} will drop ${item.name}!`)
                             const newWorldItem = new WorldItem({
                                 item: item,
                                 state: {},

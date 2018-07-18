@@ -2,8 +2,10 @@
 
 <div class="game">
     <div class="feed">
+        <div class="message">{{test}}</div>
+
         {{#each log as |str|}}
-            <div class={{if (eq str "$") "message blank" "message"}}>{{if (eq str "$") "" str}}</div>
+            <div class={{if (eq str "") "message blank" "message"}}>{{if (eq str "") "" str}}</div>
         {{/each}}
 
         <div class="compose">
