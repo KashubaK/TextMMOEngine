@@ -1,0 +1,25 @@
+.log {
+    width: 100vw;
+    height: calc(50vh - 27px);
+
+    position: relative;
+    background-color: black;
+    font-family: "Roboto Mono";
+
+    display: flex;
+    flex-direction: column-reverse;
+    overflow-y: auto;
+}
+
+.log .message {
+    width: calc(100% - 8px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    padding: 4px;
+    flex-shrink: 0;
+}
+
+.log .message.blank {
+    height: 7px;
+    background-color: rgba(255, 255, 255, 0.25);
+}

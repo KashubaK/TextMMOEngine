@@ -1,21 +1,23 @@
 {{yield}}
 
 <div class="game">
-    <div class="feed">
-        <div class="message">{{test}}</div>
+    <div class="detail">
+        {{map-view}} 
 
-        {{#each log as |str|}}
-            <div class={{if (eq str "") "message blank" "message"}}>{{if (eq str "") "" str}}</div>
-        {{/each}}
+        <div class="feed">
+            <div class="message">{{typingLog}}</div>
 
-        <div class="compose">
-            {{ input value=compose enter="sendCommand" }}
+            {{#each log as |str|}}
+                <div class={{if (eq str "") "message blank" "message"}}>{{if (eq str "") "" str}}</div>
+            {{/each}}
+
+            <div class="compose">
+                {{ input value=compose enter="sendCommand" key-up="handleKeyUp" }}
+            </div>
         </div>
     </div>
 
     <div class="interact">
-        {{map-view}} 
-
         <!-- some other stuffs -->
         <div class="something"></div>
     </div>

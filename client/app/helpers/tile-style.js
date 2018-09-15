@@ -12,10 +12,16 @@ export function tileStyle(params/*, hash*/) {
 
   switch (tile.material) {
     case "grass":
-      style += "background-color: #70ff8a;"
+      style += "background-color: #7fb755;"
       break;
     case "earth":
-      style += "background-color: #ce9d62;"
+      style += "background-color: #79563a;"
+      break;
+    case "wood":
+      style += "background-color: #bb975d;"
+      break;
+    case "stone":
+      style += "background-color: #ccc;"
       break;
   }
 

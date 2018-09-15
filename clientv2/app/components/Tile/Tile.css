@@ -1,0 +1,7 @@
+.tile {
+    width: 16px;
+    height: 16px;
+
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    display: flex;
+}
