@@ -1,2 +1,4 @@
 node_modules/
 client/node_modules
+clientv2/node_modules
+admin/node_modules
