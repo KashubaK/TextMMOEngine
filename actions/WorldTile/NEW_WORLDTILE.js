@@ -6,15 +6,17 @@ module.exports = {
 
     fn(req, res, lively, WorldTile) {
         return new Promise((resolve, reject) => {
-            const worldTile = req.body.worldTile;
+            const worldTile = new WorldTile(req.body.worldTile);
 
-            const newWorldTile = new WorldTile(worldTile);
-
-            newWorldTile.save()
+            worldTile.save()
                 .then(() => {
-                    res.json(newWorldTile);
-
-                    resolve();
+                    worldTile.populate('tileData', function(err, newWorldTile) {
+                        if (err) return reject(err);
+                        
+                        res.json(newWorldTile);
+    
+                        resolve();
+                    })
                 })
         })
     }

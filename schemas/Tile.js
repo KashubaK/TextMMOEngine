@@ -7,7 +7,7 @@ const Tile = new mongoose.Schema({
     type: String, // Floor, Door, etc.
 
     energyCost: Number,
-    traversable: Boolean
+    traversable: String
 });
 
 Tile.plugin(autopopulate);

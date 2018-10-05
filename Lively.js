@@ -95,6 +95,8 @@ function Lively({livelyOpts, expressOpts, mongoose, schemasPath, actionsPath}) {
                 .then(() => {
                     this.sendNextAction();
                 }, (err) => {
+                    throw err;
+                    
                     sender.sendError(payload, err);
                     this.sendNextAction();
                 })
