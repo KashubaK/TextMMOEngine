@@ -21,6 +21,7 @@
     "mongoose": "^5.1.7",
     "mongoose-autopopulate": "^0.7.0",
     "mongoose-timestamps": "0.0.1",
+    "multer": "^1.4.0",
     "socket.io": "^2.0.4",
     "uuid": "^3.2.1"
   }

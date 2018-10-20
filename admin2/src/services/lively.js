@@ -23,7 +23,8 @@ class Lively {
         worldNPCs: [],
         statProgresses: [],
 
-        tile: {}
+        tile: {},
+        worldTile: {}
     };
 
     store = {};

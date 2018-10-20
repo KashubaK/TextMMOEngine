@@ -7,7 +7,10 @@ const Tile = new mongoose.Schema({
     type: String, // Floor, Door, etc.
 
     energyCost: Number,
-    traversable: String
+
+    traversable: String,
+    html: String,
+    image: String
 });
 
 Tile.plugin(autopopulate);

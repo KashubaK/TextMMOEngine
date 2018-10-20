@@ -9,6 +9,8 @@ const WorldTile = new mongoose.Schema({
 
     npc: { type: mongoose.Schema.Types.ObjectId, ref: "WorldNPC", autopopulate: true },
     object: mongoose.Schema.Types.Mixed,
+    
+    rotation: Number,
  
     items: [{ type: mongoose.Schema.Types.ObjectId, ref: "WorldItem", autopopulate: true }],
     itemsBelowGround: [{ type: mongoose.Schema.Types.ObjectId, ref: "WorldItem", autopopulate: true }]

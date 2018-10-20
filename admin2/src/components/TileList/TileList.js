@@ -12,7 +12,6 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
     root: {
-        width: 480,
         padding: 20
     },
     
@@ -51,7 +50,9 @@ class TileList extends React.Component {
             material: 'Grass',
             type: 'Ground',
             energyCost: 1,
-            traversable: 'Yes'
+            traversable: 'Yes',
+            rotation: 0,
+            image: ''
         } 
     }
 
@@ -86,11 +87,30 @@ class TileList extends React.Component {
 
     createTile() {
         crud.create('tiles', { tile: this.state.tile })
-            .then(this.props.addTile)
+            .then(tile => this.props.addTiles([tile]))
     }
 
     handleClick(tile) {
         this.props.selectTile(tile)
+    }
+
+    handleTileImageUpload(e) {
+        e.persist();
+        const file = e.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = e => {
+            const result = e.target.result;
+
+            this.setState({
+                tile: {
+                    ...this.state.tile,
+                    image: result
+                }
+            });
+        }
+
+        reader.readAsDataURL(file);
     }
 
     render() {
@@ -153,7 +173,32 @@ class TileList extends React.Component {
                             <MenuItem value="Yes">Yes</MenuItem>
                             <MenuItem value="No">No</MenuItem>
                         </TextField>
-                        
+
+                        <TextField
+                            multiline
+                            label="HTML"
+                            rowsMax="4"
+                            value={this.state.tile.style}
+                            onChange={e => this.handleTileChange('html', e)} 
+                            className={classes.textField}
+                            helperText="SVG code, HTML with inline styles, etc."
+                        />
+
+                        <TextField
+                            label="Rotation"
+                            type="number"
+                            className={classes.textField}
+                            onChange={v => this.handleTileChange('rotation', v)}
+                            value={this.state.tile.rotation}
+                            helperText="The tile will be rotated by this value * 90 degrees"
+                        />
+
+                        <input
+                            type="file"
+                            onChange={e => this.handleTileImageUpload(e)}
+                            className={classes.textField}
+                        />
+                            
                         <Button variant="contained" color="primary" className={classes.button} onClick={() => this.createTile()}>
                             Save
                         </Button>

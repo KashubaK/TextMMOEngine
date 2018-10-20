@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { Grid } from '@material-ui/core';
 
 import TileList from '../components/TileList/TileList';
+import TileData from '../components/TileData/TileData';
+import WorldTileData from '../components/WorldTileData/WorldTileData';
+
 import Map from '../components/Map/Map';
 
 class Home extends React.Component {
@@ -17,12 +20,15 @@ class Home extends React.Component {
         return (
             <Grid container spacing={40} justify="center">
                 {/* game */}
-                <Grid item xs={8}>
+                <Grid item xs={9}>
                     <Map />
                 </Grid>
 
                 {/* side pane */}
-                <Grid item xs={4}>
+                <Grid item xs={3}>
+                    {this.props.worldTile._id && <WorldTileData />}
+                    {this.props.tile.name && <TileData />}
+
                     <TileList />
                 </Grid>
             </Grid>
@@ -32,7 +38,8 @@ class Home extends React.Component {
 
 export default connect(
     state => ({
-
+        tile: state.tile,
+        worldTile: state.worldTile
     }),
     dispatch => ({
 

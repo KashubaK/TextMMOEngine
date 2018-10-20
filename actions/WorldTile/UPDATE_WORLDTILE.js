@@ -8,7 +8,9 @@ module.exports = {
         return new Promise((resolve, reject) => {
             const worldTile = req.body.worldTile;
 
-            WorldTile.findByIdAndUpdate(worldTile._id, worldTile, { new: true })
+            WorldTile
+                .findByIdAndUpdate(worldTile._id, worldTile, { new: true })
+                .populate('tileData')
                 .then(newWorldTile => {
                     res.json(newWorldTile);
 
@@ -16,6 +18,8 @@ module.exports = {
                 })
                 .catch(err => {
                     res.json(err);
+
+                    reject(err);
                 })
         })
     }

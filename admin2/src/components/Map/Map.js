@@ -5,12 +5,13 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles'
 import { Paper, Typography } from '@material-ui/core'
 
-import { addWorldTiles, addWorldTile } from '../../actions';
+import { addWorldTiles } from '../../actions';
 
 import crud from '../../services/crud';
 import lively from '../../services/lively';
 
 import WorldTile from '../WorldTile/WorldTile';
+import BlankWorldTile from '../BlankWorldTile/BlankWorldTile';
 
 const styles = theme => ({
     map: {
@@ -25,16 +26,13 @@ const styles = theme => ({
         display: 'flex',
         flexWrap: 'wrap',
         flexDirection: 'column',
-        width: 792,
-        height: 792,
-        borderTop: '1px solid #ccc',
-        borderLeft: '1px solid #ccc'
+        width: 816,
+        height: 816
     },
 
     worldMapTileRow: {
         width: '100%',
-        display: 'flex',
-        borderBottom: '1px solid #ccc'
+        display: 'flex'
     }
 });
 
@@ -46,21 +44,19 @@ class Map extends React.Component {
             .then(this.props.addWorldTiles);
 
         lively.registerEvent("ADD_WORLDTILES", (state, action) => {
-            state.worldTiles = state.worldTiles.concat(action.payload);
+            state.worldTiles = [...state.worldTiles, ...action.payload];
         
             return state;
         });
 
         lively.registerEvent("ADD_WORLDTILE", (state, action) => {
-            state.worldTiles.push(action.payload);
-            state.worldTiles = Object.assign([], state.worldTiles);
+            state.worldTiles = [...state.worldTiles, action.payload];
 
             return state;
         })
     }
 
     render() {
-        console.log("Map Rendered")
         const { classes } = this.props;
 
         const parsedWorldTiles = [];
@@ -96,7 +92,11 @@ class Map extends React.Component {
                     {parsedWorldTiles.map((worldTileRow, y) => (
                         <div className={classes.worldMapTileRow}>
                             {worldTileRow.map((worldTile, x) => 
-                                <WorldTile x={x} y={y} worldTile={worldTile} />
+                                <>
+                                    {worldTile && <WorldTile worldTile={worldTile} />}
+
+                                    {!worldTile && <BlankWorldTile x={x} y={y} />}
+                                </>
                             )}
                         </div>
                     ))}

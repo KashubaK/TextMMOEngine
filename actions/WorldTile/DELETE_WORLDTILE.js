@@ -14,6 +14,10 @@ module.exports = {
 
                     resolve();
                 })
+                .catch(err => {
+                    res.status(500).json(err);
+                    reject(err);
+                })
         })
     }
 }
