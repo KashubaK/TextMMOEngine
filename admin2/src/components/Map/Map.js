@@ -12,10 +12,12 @@ import lively from '../../services/lively';
 
 import WorldTile from '../WorldTile/WorldTile';
 import BlankWorldTile from '../BlankWorldTile/BlankWorldTile';
+import ContextMenu from '../ContextMenu/ContextMenu';
 
 const styles = theme => ({
     map: {
-        padding: theme.typography.pxToRem(20)
+        padding: theme.typography.pxToRem(20),
+        position: 'relative'
     },
 
     mapHeader: {
@@ -27,7 +29,8 @@ const styles = theme => ({
         flexWrap: 'wrap',
         flexDirection: 'column',
         width: 816,
-        height: 816
+        height: 816,
+        border: '1px solid #ddd'
     },
 
     worldMapTileRow: {
@@ -54,6 +57,33 @@ class Map extends React.Component {
 
             return state;
         })
+
+        lively.registerEvent("SET_MOUSE_POSITION", (state, action) => {
+            state.mousePosition = action.payload;
+
+            return state;
+        });
+
+        lively.registerEvent("SET_INITIAL_MOUSE_TARGET", (state, action) => {
+            state.mouseTarget[0] = action.payload;
+            state.mouseTarget[1] = { x: -1, y: -1 };
+            state.pastMouseTargets = [];
+
+            return state;
+        });
+
+        lively.registerEvent("SET_LISTENING_FOR_FINAL_TARGET", (state, action) => {
+            state.listeningForFinalTarget = action.payload; // true || false
+
+            return state;
+        })
+
+        lively.registerEvent("SET_FINAL_MOUSE_TARGET", (state, action) => {
+            state.mouseTarget[1] = action.payload;
+            state.pastMouseTargets = [...state.pastMouseTargets, action.payload];
+
+            return state;
+        });
     }
 
     render() {
@@ -84,12 +114,10 @@ class Map extends React.Component {
 
         return (
             <Paper className={classes.map}>
-                <Typography className={classes.mapHeader}>
-                    Map
-                </Typography>
+                <ContextMenu />
 
                 <div className={classes.worldMap}>
-                    {parsedWorldTiles.map((worldTileRow, y) => (
+                    {parsedWorldTiles.map((worldTileRow, y) => 
                         <div className={classes.worldMapTileRow}>
                             {worldTileRow.map((worldTile, x) => 
                                 <>
@@ -99,7 +127,7 @@ class Map extends React.Component {
                                 </>
                             )}
                         </div>
-                    ))}
+                    )}
                 </div>
             </Paper>
         )        

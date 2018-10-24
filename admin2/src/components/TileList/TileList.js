@@ -5,10 +5,12 @@ import lively from '../../services/lively';
 import crud from '../../services/crud';
 
 import { addTiles, selectTile } from '../../actions';
-import { Paper, ExpansionPanel, ExpansionPanelSummary, Button, TextField, MenuItem, Typography, ExpansionPanelDetails, Input } from '@material-ui/core';
+import { Paper, ExpansionPanel, ExpansionPanelSummary, Button, TextField, MenuItem, Typography, ExpansionPanelDetails, Input, List, ListItem, Avatar, ListItemText } from '@material-ui/core';
 
 import { AddCircle } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
+
+import WorldTile from '../WorldTile/WorldTile';
 
 const styles = theme => ({
     root: {
@@ -40,6 +42,11 @@ const styles = theme => ({
 
     expansionPanelDetails: {
         flexWrap: 'wrap'
+    },
+
+    avatar: {
+        backgroundColor: 'transparent',
+        borderRadius: 0
     }
 })
 
@@ -207,22 +214,17 @@ class TileList extends React.Component {
 
                 <br/>
                  
-                {this.props.tiles.map(tile => 
-                    <ExpansionPanel onClick={() => this.handleClick(tile)}>
-                        <ExpansionPanelSummary>
-                            <div className={classes.column}>
-                                <Typography className={classes.heading}>
-                                    {tile.name}
-                                </Typography>
-                            </div>
-                            <div className={classes.column}>
-                                <Typography className={classes.secondaryHeading}>
-                                    {tile.material}
-                                </Typography>
-                            </div>
-                        </ExpansionPanelSummary>
-                    </ExpansionPanel>
-                )}
+                <List>
+                    {this.props.tiles.map(tile => 
+                        <ListItem button onClick={() => this.handleClick(tile)}>
+                            <Avatar className={classes.avatar}>
+                                <WorldTile worldTile={{ tileData: tile }} />
+                            </Avatar>
+
+                            <ListItemText primary={tile.name} secondary={tile.type} />
+                        </ListItem>
+                    )}
+                </List>
             </Paper>
         )
     }

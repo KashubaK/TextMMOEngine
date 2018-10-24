@@ -6,21 +6,39 @@ import { Grid } from '@material-ui/core';
 import TileList from '../components/TileList/TileList';
 import TileData from '../components/TileData/TileData';
 import WorldTileData from '../components/WorldTileData/WorldTileData';
+import ToolKit from '../components/ToolKit/ToolKit';
 
 import Map from '../components/Map/Map';
 
-class Home extends React.Component {
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+    toolKit: {
+        flexBasis: '48px'
+    }
+})
+
+class MapRoute extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {};
+    }
+    
+    handleChange(v) {
+        console.log(v)
     }
 
     render() {
+        const { classes } = this.props;
+        
         return (
             <Grid container spacing={40} justify="center">
+                {/* toolkit */}
+                <Grid item xs={1} className={classes.toolKit}>
+                    <ToolKit />
+                </Grid>
+
                 {/* game */}
-                <Grid item xs={9}>
+                <Grid item xs={8}>
                     <Map />
                 </Grid>
 
@@ -32,7 +50,7 @@ class Home extends React.Component {
                     <TileList />
                 </Grid>
             </Grid>
-        )
+        );
     }
 }
 
@@ -44,4 +62,4 @@ export default connect(
     dispatch => ({
 
     })
-)(Home);
+)(withStyles(styles)(MapRoute));

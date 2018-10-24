@@ -24,7 +24,13 @@ class Lively {
         statProgresses: [],
 
         tile: {},
-        worldTile: {}
+        worldTile: {},
+        currentTool: '',
+
+        mousePosition: { x: -1, y: -1 },
+        mouseTarget: [{ x: -1, y: -1 }, { x: -1, y: -1 }],
+        listeningForFinalTarget: false,
+        pastMouseTargets: []
     };
 
     store = {};

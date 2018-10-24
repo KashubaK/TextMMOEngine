@@ -5,7 +5,7 @@ import lively from '../../services/lively';
 import crud from '../../services/crud';
 
 import { updateWorldTile, deleteWorldTile } from '../../actions';
-import { Paper, TextField, Typography, IconButton } from '@material-ui/core';
+import { Paper, TextField, Typography, Button } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -50,6 +50,10 @@ const styles = theme => ({
 
     expansionPanelDetails: {
         flexWrap: 'wrap'
+    },
+
+    button: {
+        marginRight: theme.typography.pxToRem(15)
     }
 })
 
@@ -108,9 +112,9 @@ class WorldTileData extends React.Component {
                     helperText="The tile will be rotated by this value * 90 degrees"
                 />
 
-                <IconButton className={classes.button} aria-label="Delete" onClick={() => this.handleDelete()}>
-                    <DeleteIcon />
-                </IconButton>
+                <Button variant="outlined" color="secondary" className={classes.button} aria-label="Delete" onClick={() => this.handleDelete()}>
+                    Delete
+                </Button>
             </Paper>
         )
     }

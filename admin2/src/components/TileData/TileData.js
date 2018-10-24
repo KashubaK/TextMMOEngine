@@ -50,6 +50,10 @@ const styles = theme => ({
 
     expansionPanelDetails: {
         flexWrap: 'wrap'
+    },
+
+    button: {
+        marginRight: theme.typography.pxToRem(15)
     }
 })
 
@@ -131,13 +135,13 @@ class TileData extends React.Component {
                     helperText="The tile will be rotated by this value * 90 degrees"
                 />
 
-                <Button color="primary" className={classes.button} onClick={() => this.handleDuplicate()}>
+                <Button variant="outlined" color="primary" className={classes.button} onClick={() => this.handleDuplicate()}>
                     Duplicate
                 </Button>
 
-                <IconButton className={classes.button} aria-label="Delete" onClick={() => this.handleDelete()}>
-                    <DeleteIcon />
-                </IconButton>
+                <Button variant="outlined" color="secondary" className={classes.button} aria-label="Delete" onClick={() => this.handleDelete()}>
+                    Delete
+                </Button>
             </Paper>
         )
     }
